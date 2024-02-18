@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p>UUID:</p>
+    <p id="uuid"></p>
+    <br />
+    <p>Name:</p>
+    <p id="name"></p>
+    <br />
+
+    <br /><br />
+
+    <a href="#math">Clear 1 #math</a><br />
+    <a href="#math" id="get1">Clear 2 #math</a><br />
+    <a href="#math" id="get2">Clear 3 #math</a><br />
+
+    <div style="height: 1000px">
+      <p>Div 1</p>
+    </div>
+
+    <div name="math">
+      <p>I am math Math</p>
+    </div>
+
+    <script>
+      // Set the value of the hidden input field once the page is fully loaded
+      window.onload = function () {
+        console.log('onload - Click');
+        const uuid = crypto.randomUUID();
+        localStorage.setItem('uuid', uuid);
+        localStorage.setItem('name', 'John Doe');
+
+        // ---------------
+
+        document.getElementById('uuid').value = localStorage.getItem('uuid');
+        document.getElementById('name').value = localStorage.getItem('name');
+      };
+
+      document
+        .getElementById('get1')
+        .addEventListener('click', function (event) {
+          console.log('get1 - Click');
+          localStorage.removeItem('uuid');
+          localStorage.removeItem('name');
+        });
+      document
+        .getElementById('get2')
+        .addEventListener('click', function (event) {
+          event.preventDefault();
+          console.log('get2 - Click');
+          localStorage.removeItem('uuid');
+          localStorage.removeItem('name');
+        });
+    </script>
+  </body>
+</html>
